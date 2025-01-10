@@ -1,0 +1,314 @@
+nav img {
+  width: 70px;
+  height: 70px;
+}
+
+.navbar-nav {
+  gap: 10px;
+}
+
+.navbar {
+  background-color: black; 
+}
+
+.nav-link {
+  color: white; 
+  transition: color 0.3s, background-color 0.3s;
+  border-radius: 5px;
+}
+
+.nav-link:hover {
+  color: black; 
+  background-color: red;
+}
+
+.nav-link.active {
+  background-color: green; 
+  color: white;
+}
+
+.dropdown-menu {
+  background-color: white; 
+  border-color: green; 
+}
+
+.dropdown-item:hover {
+  background-color: red; 
+  color: white; 
+}
+
+.btn-outline-success {
+  color: green; 
+  border-color: green; 
+}
+
+.btn-outline-success:hover {
+  background-color: green; /* Green background on hover */
+  color: white; /* White text */
+}
+
+.carousel-item {
+  background-image: url('/images/article-demo.jpg'); 
+  background-size: cover; 
+  background-position: center;
+  height: 100vh;
+  /* margin-bottom: 100px; */
+}
+
+.nav-tabs .nav-link {
+  color: #fff;
+  background-color: transparent;
+}
+
+
+
+.pad {
+  padding: 0 50px 50px;
+
+}
+
+.tab-content {
+  background-color: yellow;
+  padding: 0 20px 20px;
+  background-image: url('/images/red-bg.jpg'); 
+  background-size: cover; 
+  background-position: center;
+}
+
+.card {
+  background-color: #fff;
+  color: #000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+  background-color: green;
+  border: none;
+}
+
+.featured {
+  background-image: url('/images/red-bg2.jpg'); 
+}
+
+.table img {
+  width: 50px;
+  height: 50px;
+}
+
+.gradient-header {
+  /* background: linear-gradient(to right, #ff0000, #ff6347); */
+  background: linear-gradient(to right, black, #ff0000);
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 10px 10px 0 0;
+}
+
+.table-container {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.table th, .table td {
+  vertical-align: middle;
+}
+
+.position-number {
+  font-weight: bold;
+}
+
+.featured-player-card {
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.featured-player-card .header {
+  /* background: linear-gradient(to right, #ff0000, #ff6347); */
+  background: linear-gradient(to right, black, #ff0000);
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+  color: white;
+}
+
+.player-details {
+  display: flex;
+}
+
+.player-details .stats {
+  background-color: #f9f9f9;
+  padding: 20px;
+  width: 50%;
+}
+
+.stats img {
+  height: 150px;
+  margin-bottom: 20px;
+}
+
+.stats .stat {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.stats .value {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.player-image {
+  width: 50%;
+  background: linear-gradient(to right, black, white);
+  position: relative;
+}
+
+.player-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.player-info {
+  padding: 15px;
+  text-align: center;
+}
+
+.player-info h3 {
+  margin-bottom: 0;
+  font-size: 24px;
+  color: black;
+}
+
+.player-info p {
+  margin: 0;
+  color: gray;
+}
+
+.country {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  margin: 10px 0;
+}
+
+.country img {
+  width: 20px;
+  height: 14px;
+}
+
+.view-profile {
+  text-align: center;
+  font-weight: bold;
+  color: green;
+  text-decoration: none;
+  margin-bottom: 10px;
+}
+
+.view-profile:hover {
+  text-decoration: underline;
+}
+
+/* 
+
+.card {
+  background-color: #fff;
+  color: #000;
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+  background-color: #1a75d2;
+  border: none;
+}
+
+.btn-secondary {
+  background-color: #f5f5f5;
+  color: #000;
+  border: none;
+} */
+
+/*Teams Page styles */
+.clubs-header {
+  background: linear-gradient(45deg, red, green);
+  color: white;
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.clubs-header h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.search-bar {
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.search-bar input {
+  border-radius: 50px;
+  padding: 10px 20px;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+.search-bar button {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #6c757d;
+}
+
+.search-bar button:hover {
+  color: #000;
+}
+
+/* Teams Page styles */
+.teams {
+  background-image: url('/images/red-bg2.jpg'); 
+  margin-bottom: 10px;
+}
+
+.club-card {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  background: linear-gradient(135deg, #ffffff, #f8f8f8);
+}
+
+.club-card:hover {
+  transform: translateY(-5px);
+}
+
+.club-card img {
+  width: 100px;
+  height: auto;
+  object-fit: contain;
+  margin: 10px auto;
+}
+
+.club-card .card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.club-card .card-footer a {
+  color: green;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}

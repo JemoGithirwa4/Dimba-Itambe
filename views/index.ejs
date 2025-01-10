@@ -1,0 +1,252 @@
+<%- include("partials/header.ejs") %>
+
+  <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class="active" aria-current="true"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" class=""></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
+        <div class="container">
+          <div class="carousel-caption">
+            <h1>Another example headline.</h1>
+            <p>Some representative placeholder content for the second slide of the carousel.</p>
+            <p><a class="btn btn-lg btn-primary" href="#">Read more</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
+        <div class="container">
+          <div class="carousel-caption">
+            <h1>Another example headline.</h1>
+            <p>Some representative placeholder content for the second slide of the carousel.</p>
+            <p><a class="btn btn-lg btn-primary" href="#">Read more</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <div class="my-5 pad">
+    <ul class="nav nav-tabs justify-content-center mb-4" id="matchTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="mens-tab" data-bs-toggle="tab" data-bs-target="#mens" type="button" role="tab"><h1 class="gw">Gameweek 1</h1></button>
+        </li>
+    </ul>
+
+    <!-- Tab Content -->
+    <div class="tab-content">
+        <div class="tab-pane fade show active" id="mens" role="tabpanel">
+            <div class="row g-4">
+                <!-- Match Card 1 -->
+                <div class="col-md-4">
+                    <div class="card p-3">
+                        <div class="card-body text-center">
+                            <p class="text-uppercase text-muted">Mon 30 Dec 2024</p>
+                            <p class="fw-bold">Kenya Premier League</p>
+                            <div class="d-flex justify-content-around align-items-center mb-3">
+                                <img src="/images/logo-1.png" alt="Ipswich" class="img-fluid" style="width: 50px;">
+                                <h3 class="fw-bold">2 - 0</h3>
+                                <img src="/images/logo-2.png" alt="Chelsea" class="img-fluid" style="width: 50px;">
+                            </div>
+                            <p class="mb-3">Ipswich Town vs Chelsea</p>
+                            <a href="#" class="btn btn-primary w-100 mb-2">Tickets</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Match Card 2 -->
+                <div class="col-md-4">
+                    <div class="card p-3">
+                        <div class="card-body text-center">
+                            <p class="text-uppercase text-muted">Sat 04 Jan 2025</p>
+                            <p class="fw-bold">Kenya Premier League</p>
+                            <div class="d-flex justify-content-around align-items-center mb-3">
+                                <img src="/images/logo-1.png" alt="Crystal Palace" class="img-fluid" style="width: 50px;">
+                                <h3 class="fw-bold">15:00</h3>
+                                <img src="/images/logo-2.png" alt="Chelsea" class="img-fluid" style="width: 50px;">
+                            </div>
+                            <p class="mb-3">Crystal Palace vs Chelsea</p>
+                            <a href="#" class="btn btn-primary w-100 mb-2">Tickets</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Match Card 3 -->
+                <div class="col-md-4">
+                    <div class="card p-3">
+                        <div class="card-body text-center">
+                            <p class="text-uppercase text-muted">Sat 11 Jan 2025</p>
+                            <p class="fw-bold">Kenya Premier League</p>
+                            <div class="d-flex justify-content-around align-items-center mb-3">
+                                <img src="/images/logo-1.png" alt="Chelsea" class="img-fluid" style="width: 50px;">
+                                <h3 class="fw-bold">15:00</h3>
+                                <img src="/images/logo-2.png" alt="Morecambe" class="img-fluid" style="width: 50px;">
+                            </div>
+                            <p class="mb-3">Chelsea vs Morecambe</p>
+                            <a href="#" class="btn btn-primary w-100 mb-2">Tickets</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="card p-3">
+                      <div class="card-body text-center">
+                          <p class="text-uppercase text-muted">Sat 11 Jan 2025</p>
+                          <p class="fw-bold">Kenya Premier League</p>
+                          <div class="d-flex justify-content-around align-items-center mb-3">
+                              <img src="/images/logo-1.png" alt="Chelsea" class="img-fluid" style="width: 50px;">
+                              <h3 class="fw-bold">15:00</h3>
+                              <img src="/images/logo-2.png" alt="Morecambe" class="img-fluid" style="width: 50px;">
+                          </div>
+                          <p class="mb-3">Chelsea vs Morecambe</p>
+                          <a href="#" class="btn btn-primary w-100 mb-2">Tickets</a>
+                      </div>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+
+
+  <div class="d-flex justify-content-center align-items-center featured">
+    <div class="container my-5">
+      <div class="table-container">
+        <div class="gradient-header">
+          Kenya Premier League Table
+        </div>
+        <table class="table table-striped mb-0">
+          <thead>
+            <tr>
+              <th scope="col">Pos</th>
+              <th scope="col">Club</th>
+              <th scope="col">Pl</th>
+              <th scope="col">GD</th>
+              <th scope="col">Pts</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="position-number">1</td>
+              <td>
+                <img src="/images/logo-1.png" alt="Liverpool" class="club-logo"> Liverpool
+              </td>
+              <td>19</td>
+              <td>+28</td>
+              <td>46</td>
+            </tr>
+            <tr>
+              <td class="position-number">2</td>
+              <td>
+                <img src="/images/logo-1.png" alt="Arsenal" class="club-logo"> Arsenal
+              </td>
+              <td>20</td>
+              <td>+21</td>
+              <td>40</td>
+            </tr>
+            <tr>
+              <td class="position-number">3</td>
+              <td>
+                <img src="/images/logo-1.png" alt="Nottingham Forest" class="club-logo"> Nott'm Forest
+              </td>
+              <td>20</td>
+              <td>+10</td>
+              <td>40</td>
+            </tr>
+            <tr>
+              <td class="position-number">4</td>
+              <td>
+                <img src="/images/logo-1.png" alt="Chelsea" class="club-logo"> Chelsea
+              </td>
+              <td>20</td>
+              <td>+15</td>
+              <td>36</td>
+            </tr>
+            <tr>
+              <td class="position-number">5</td>
+              <td>
+                <img src="/images/logo-1.png" alt="Newcastle" class="club-logo"> Newcastle
+              </td>
+              <td>20</td>
+              <td>+12</td>
+              <td>35</td>
+            </tr>
+            <tr>
+              <td class="position-number">6</td>
+              <td>
+                <img src="/images/logo-1.png" alt="Man City" class="club-logo"> Man City
+              </td>
+              <td>20</td>
+              <td>+9</td>
+              <td>34</td>
+            </tr>
+            <tr>
+              <td class="position-number">7</td>
+              <td>
+                <img src="/images/logo-1.png" alt="Bournemouth" class="club-logo"> Bournemouth
+              </td>
+              <td>20</td>
+              <td>+7</td>
+              <td>33</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="container my-5">
+      <div class="card featured-player-card">
+        <div class="header">
+          Featured Player
+        </div>
+        <div class="player-details">
+          <!-- Stats Section -->
+          <div class="stats text-center">
+            <img src="/images/logo-2.png" alt="Team Logo">
+            <div class="stat">
+              <span class="value">282</span>
+              <span>Appearances</span>
+            </div>
+            <div class="stat">
+              <span class="value">175</span>
+              <span>Goals</span>
+            </div>
+            <div class="stat">
+              <span class="value">82</span>
+              <span>Assists</span>
+            </div>
+            <div class="stat">
+              <span class="value">1,014</span>
+              <span>Shots</span>
+            </div>
+          </div>
+          <!-- Player Image Section -->
+          <div class="player-image">
+            <img src="/images/nkunku.webp" alt="Player Image">
+          </div>
+        </div>
+        <!-- Player Info Section -->
+        <div class="player-info">
+          <h3>Mohamed Salah</h3>
+          <p>Forward</p>
+          <div class="country">
+            <img src="/images/flag.png" alt="Egypt Flag">
+            <span>Egypt</span>
+          </div>
+          <a href="#" class="view-profile">View Profile <i class="fa-solid fa-angle-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<%- include("partials/footer.ejs") %>
