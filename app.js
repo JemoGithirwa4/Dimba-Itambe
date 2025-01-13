@@ -20,6 +20,14 @@ app.get("/teams", (req, res) => {
     res.render("teams.ejs", { activePage: "teams" });
 });
 
+app.get("/fixtures", (req, res) => {
+    res.render("fixtures.ejs", { activePage: "fixtures" });
+});
+
+app.get("/shop", (req, res) => {
+    res.render("shop.ejs", { activePage: "shop" });
+});
+
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });

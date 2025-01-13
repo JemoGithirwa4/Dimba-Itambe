@@ -86,6 +86,10 @@ nav img {
   border: none;
 }
 
+.btn-primary:hover {
+  background-color: red;
+}
+
 .featured {
   background-image: url('/images/red-bg2.jpg'); 
 }
@@ -235,7 +239,7 @@ nav img {
 
 /*Teams Page styles */
 .clubs-header {
-  background: linear-gradient(45deg, red, green);
+  background: linear-gradient(45deg, red, black);
   color: white;
   text-align: center;
   padding: 50px 20px;
@@ -275,7 +279,6 @@ nav img {
   color: #000;
 }
 
-/* Teams Page styles */
 .teams {
   background-image: url('/images/red-bg2.jpg'); 
   margin-bottom: 10px;
@@ -311,4 +314,64 @@ nav img {
   color: green;
   text-decoration: none;
   transition: color 0.3s ease;
+}
+
+/* Fixtures Page styles */
+.nav-tabs .nav-link.active {
+  background-color: white;
+  color: #003087;
+  font-weight: bold;
+  border: none;
+  border-radius: 20px;
+}
+
+.match-card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.team-logo {
+  height: 70px;
+}
+
+.hold {
+  background-color: #f5f7fa;
+}
+
+.fix-nav {
+  border: 2px solid black;
+}
+
+/* Styling for the nav-tabs container */
+.custom-nav {
+  background: linear-gradient(135deg, black, red);
+  border: none;
+  padding: 20px;
+}
+
+.nav-tabs .nav-link {
+  color: #ffffff; 
+  border: none;
+  background-color: transparent;
+  padding: 10px 20px;
+  border-radius: 20px;
+}
+
+/* Active tab styling */
+.nav-tabs .nav-link.active {
+  background-color: #ffffff; 
+  color: #001c80; 
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); 
+}
+
+.nav-tabs .nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.2); 
+  color: #ffffff; 
+  transition: 0.3s ease-in-out;
+}
+
+.text-primary-mine {
+  color: green;
 }
