@@ -67,7 +67,7 @@ nav img {
 
 }
 
-.tab-content {
+.home-tab.tab-content {
   background-color: yellow;
   padding: 0 20px 20px;
   background-image: url('/images/red-bg.jpg'); 
@@ -340,10 +340,6 @@ nav img {
   background-color: #f5f7fa;
 }
 
-.fix-nav {
-  border: 2px solid black;
-}
-
 /* Styling for the nav-tabs container */
 .custom-nav {
   background: linear-gradient(135deg, black, red);
@@ -360,7 +356,7 @@ nav img {
 }
 
 /* Active tab styling */
-.nav-tabs .nav-link.active {
+.nav-tabs .fix-nav .active {
   background-color: #ffffff; 
   color: #001c80; 
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); 
@@ -374,4 +370,48 @@ nav img {
 
 .text-primary-mine {
   color: green;
+}
+
+.fix-section {
+  display: none;
+}
+
+.fix-section.live {
+  display: block;
+}
+
+.match-info {
+  padding: 20px 0;
+  color: white;
+}
+
+.score-box {
+  font-size: 2rem;
+  font-weight: bold;
+  border: 2px solid #fff;
+  padding: 10px 20px;
+  display: inline-block;
+  margin: 10px 0;
+}
+
+.video-thumbnail {
+  margin-top: 30px;
+  text-align: center;
+}
+.video-thumbnail img {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+.video-caption {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #fff;
+}
+
+.res-holder {
+  background-image: url('/images/red-bg2.jpg'); 
+  padding: 50px 0;
+  margin-bottom: 50px;
 }
