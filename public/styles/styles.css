@@ -47,7 +47,7 @@ nav img {
   color: white; /* White text */
 }
 
-.carousel-item {
+.carousel-item-mine {
   background-image: url('/images/article-demo.jpg'); 
   background-size: cover; 
   background-position: center;
@@ -414,4 +414,24 @@ nav img {
   background-image: url('/images/red-bg2.jpg'); 
   padding: 50px 0;
   margin-bottom: 50px;
+}
+
+.product-card {
+  text-align: center;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+}
+.product-card img {
+  width: 100%;
+  max-height: 200px;
+  object-fit: contain;
+}
+.product-card .price {
+  color: orange;
+  font-weight: bold;
+}
+.carousel-indicators button {
+  background-color: #555;
 }

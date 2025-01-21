@@ -1,2 +1,102 @@
 <%- include("partials/header.ejs") %>
+
+<div class="hold">
+    <div class="container py-5">
+        <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <!-- First Slide -->
+            <div class="carousel-item active">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="product-card">
+                    <img src="/images/shop-1.png" alt="Man T-shirt">
+                    <h5>Man T-shirt</h5>
+                    <p class="price">$30</p>
+                    <div>
+                      <a href="#" class="btn btn-warning">Buy Now</a>
+                      <a href="#" class="btn btn-link">See More</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="product-card">
+                    <img src="/images/shop-2.png" alt="Man Shirt">
+                    <h5>Man Shirt</h5>
+                    <p class="price">$30</p>
+                    <div>
+                      <a href="#" class="btn btn-warning">Buy Now</a>
+                      <a href="#" class="btn btn-link">See More</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="product-card">
+                    <img src="/images/shop-3.png" alt="Woman Scarf">
+                    <h5>Woman Scarf</h5>
+                    <p class="price">$30</p>
+                    <div>
+                      <a href="#" class="btn btn-warning">Buy Now</a>
+                      <a href="#" class="btn btn-link">See More</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Add additional slides here -->
+            <div class="carousel-item active">
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="product-card">
+                      <img src="/images/shop-1.png" alt="Man T-shirt">
+                      <h5>Man T-shirt</h5>
+                      <p class="price">$30</p>
+                      <div>
+                        <a href="#" class="btn btn-warning">Buy Now</a>
+                        <a href="#" class="btn btn-link">See More</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="product-card">
+                      <img src="/images/shop-2.png" alt="Man Shirt">
+                      <h5>Man Shirt</h5>
+                      <p class="price">$30</p>
+                      <div>
+                        <a href="#" class="btn btn-warning">Buy Now</a>
+                        <a href="#" class="btn btn-link">See More</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="product-card">
+                      <img src="/images/shop-3.png" alt="Woman Scarf">
+                      <h5>Woman Scarf</h5>
+                      <p class="price">$30</p>
+                      <div>
+                        <a href="#" class="btn btn-warning">Buy Now</a>
+                        <a href="#" class="btn btn-link">See More</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <!-- Carousel Controls -->
+          <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+          <!-- Indicators -->
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <!-- Add more buttons for additional slides -->
+          </div>
+        </div>
+    </div>
+</div>
+
 <%- include("partials/footer.ejs") %>
