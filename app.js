@@ -28,6 +28,10 @@ app.get("/shop", (req, res) => {
     res.render("shop.ejs", { activePage: "shop" });
 });
 
+app.get("/careers", (req, res) => {
+    res.render("careers.ejs", { activePage: "careers" });
+});
+
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });

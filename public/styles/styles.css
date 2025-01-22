@@ -439,3 +439,22 @@ nav img {
 .tog {
   color: green;
 }
+
+.job-card {
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.job-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+.job-openings {
+  color: #dc3545; /* Red */
+  font-size: 0.9rem;
+}
+.more-details {
+  background-color: #001f54;
+  color: #fff;
+  border-radius: 5px;
+}
