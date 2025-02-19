@@ -94,49 +94,23 @@ nav img {
   background-image: url('/images/red-bg2.jpg'); 
 }
 
-.table img {
-  width: 50px;
-  height: 50px;
-}
-
-.gradient-header {
-  /* background: linear-gradient(to right, #ff0000, #ff6347); */
-  background: linear-gradient(to right, black, #ff0000);
-  color: white;
-  text-align: center;
-  font-weight: bold;
-  padding: 10px;
-  border-radius: 10px 10px 0 0;
-}
-
-.table-container {
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.table th, .table td {
-  vertical-align: middle;
-}
-
-.position-number {
-  font-weight: bold;
-}
-
 .featured-player-card {
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.featured-player-card .header {
+.my-head {
   /* background: linear-gradient(to right, #ff0000, #ff6347); */
-  background: linear-gradient(to right, black, #ff0000);
   padding: 10px;
   text-align: center;
   font-weight: bold;
   font-size: 18px;
   color: white;
+}
+
+.my-head {
+  border: none;
 }
 
 .player-details {
@@ -457,4 +431,18 @@ nav img {
   background-color: #001f54;
   color: #fff;
   border-radius: 5px;
+}
+
+/* Tickets page */
+.ticket-container {
+  max-width: 500px;
+  margin: 50px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-label {
+  font-weight: bold;
 }

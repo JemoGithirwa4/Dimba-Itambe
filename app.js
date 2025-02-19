@@ -12,6 +12,10 @@ app.get("/", (req, res) => {
     res.render("index.ejs", { activePage: "latest" });
 });
 
+app.get("/pay-ticket", (req, res) => {
+    res.render("tickets/ticket-pay.ejs", { activePage: "latest" });
+});
+
 app.get("/watch", (req, res) => {
     res.render("watch.ejs", { activePage: "watch" });
 });
