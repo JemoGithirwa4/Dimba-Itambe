@@ -47,20 +47,17 @@ nav img {
   color: white; /* White text */
 }
 
-.carousel-item-mine {
-  background-image: url('/images/article-demo.jpg'); 
+/* .carousel-item-mine {
   background-size: cover; 
   background-position: center;
   height: 100vh;
   /* margin-bottom: 100px; */
-}
+/*} */
 
 .nav-tabs .nav-link {
   color: #fff;
   background-color: transparent;
 }
-
-
 
 .pad {
   padding: 0 50px 50px;
@@ -324,7 +321,7 @@ nav img {
 }
 
 .hold {
-  background-color: #f5f7fa;
+  background-color: #E8ECEF;
 }
 
 /* Styling for the nav-tabs container */
@@ -384,13 +381,15 @@ nav img {
 .video-thumbnail {
   margin-top: 30px;
   text-align: center;
+  height: 300px;
 }
-.video-thumbnail img {
-  width: 100%;
-  max-width: 300px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+
+.video-container-2 iframe {
+  width: 300px; /* Set desired width */
+  height: 250px; /* Set desired height */
 }
+
+
 .video-caption {
   margin-top: 10px;
   font-size: 16px;
@@ -401,6 +400,11 @@ nav img {
   background-image: url('/images/red-bg2.jpg'); 
   padding: 50px 0;
   margin-bottom: 50px;
+}
+
+table img {
+  width: 30px;
+  height: 30px;
 }
 
 .product-card {
