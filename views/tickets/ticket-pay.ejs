@@ -7,13 +7,8 @@
             <hr>
             <form action="/purchase-ticket" method="POST">
                 <div class="mb-3">
-                    <label for="match" class="form-label text-primary-mine">Select Match</label>
-                    <select class="form-control" id="match" name="match" required>
-                        <option value="">-- Select Match --</option>
-                        <option value="game1">Kariobangi Sharks vs Sofapaka</option>
-                        <option value="game2">Bandari FC vs Mathare United</option>
-                        <option value="game3">Western Stima vs Nzoia Sugar</option>
-                    </select>
+                    <label for="match" class="form-label text-primary-mine">Match</label>
+                    <input type="text" class="form-control" id="fixture" name="fixture" value="<%= fixture.hometeam %> vs <%= fixture.awayteam %>" readonly>
                 </div>
                 <div class="mb-3">
                     <label for="phone" class="form-label text-primary-mine">M-Pesa Phone Number</label>
@@ -25,7 +20,7 @@
                 </div>    
                 <div class="mb-3">
                     <label for="amount" class="form-label text-primary-mine">Ticket Price</label>
-                    <input type="text" class="form-control" id="amount" name="amount" value="KES 500" readonly>
+                    <input type="text" class="form-control" id="amount" name="amount" value="KES 50" readonly>
                 </div>
                 <button type="submit" class="btn btn-success w-100">
                     Pay with M-Pesa <i class="fas fa-mobile-alt"></i>

@@ -31,86 +31,41 @@
   </button>
 </div>
 
-  <div class="my-5 pad">
-    <ul class="nav nav-tabs justify-content-center mb-4" id="matchTabs" role="tablist">
-        <li class="nav-item" role="presentation">
-          <h1 class="gw">Gameweek 1</h1>
-        </li>
-    </ul>
+<div class="my-5 pad">
+  <ul class="nav nav-tabs justify-content-center mb-4" id="matchTabs" role="tablist">
+      <li class="nav-item" role="presentation">
+          <% if (fixtures.length > 0) { %>
+              <h1 class="gw">Gameweek <%= fixtures[0].gameweek %></h1>
+          <% } else { %>
+              <h1 class="gw">No Fixtures Available</h1>
+          <% } %>
+      </li>
+  </ul>
 
-    <!-- Tab Content -->
-    <div class="home-tab tab-content">
-        <div class="tab-pane fade show active" id="mens" role="tabpanel">
-            <div class="row g-4">
-                <!-- Match Card 1 -->
-                <div class="col-md-4">
-                    <div class="card p-3">
-                        <div class="card-body text-center">
-                            <p class="text-uppercase text-muted">Mon 24 Feb 2025</p>
-                            <p class="fw-bold">Kenya Premier League</p>
-                            <div class="d-flex justify-content-around align-items-center mb-3">
-                                <img src="/images/logo-1.png" alt="Ipswich" class="img-fluid" style="width: 50px;">
-                                <h3 class="fw-bold">14:00</h3>
-                                <img src="/images/logo-2.png" alt="Chelsea" class="img-fluid" style="width: 50px;">
-                            </div>
-                            <p class="mb-3">Kariobangi sharks vs Sofapaka</p>
-                            <a href="/pay-ticket" class="btn btn-primary w-100 mb-2">Tickets</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Match Card 2 -->
-                <div class="col-md-4">
-                    <div class="card p-3">
-                        <div class="card-body text-center">
-                            <p class="text-uppercase text-muted">Mon 24 Feb 2025</p>
-                            <p class="fw-bold">Kenya Premier League</p>
-                            <div class="d-flex justify-content-around align-items-center mb-3">
-                                <img src="/images/logo-1.png" alt="Crystal Palace" class="img-fluid" style="width: 50px;">
-                                <h3 class="fw-bold">15:00</h3>
-                                <img src="/images/logo-2.png" alt="Chelsea" class="img-fluid" style="width: 50px;">
-                            </div>
-                            <p class="mb-3">Bnadari FC vs Mathare United</p>
-                            <a href="#" class="btn btn-primary w-100 mb-2">Tickets</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Match Card 3 -->
-                <div class="col-md-4">
-                    <div class="card p-3">
-                        <div class="card-body text-center">
-                            <p class="text-uppercase text-muted">Mon 24 Feb 2025</p>
-                            <p class="fw-bold">Kenya Premier League</p>
-                            <div class="d-flex justify-content-around align-items-center mb-3">
-                                <img src="/images/logo-1.png" alt="Chelsea" class="img-fluid" style="width: 50px;">
-                                <h3 class="fw-bold">15:00</h3>
-                                <img src="/images/logo-2.png" alt="Morecambe" class="img-fluid" style="width: 50px;">
-                            </div>
-                            <p class="mb-3">Western Stima vs Nzoia sugar</p>
-                            <a href="#" class="btn btn-primary w-100 mb-2">Tickets</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="card p-3">
-                      <div class="card-body text-center">
-                          <p class="text-uppercase text-muted">Tue 25 Feb 2025</p>
-                          <p class="fw-bold">Kenya Premier League</p>
-                          <div class="d-flex justify-content-around align-items-center mb-3">
-                              <img src="/images/logo-1.png" alt="Chelsea" class="img-fluid" style="width: 50px;">
-                              <h3 class="fw-bold">15:00</h3>
-                              <img src="/images/logo-2.png" alt="Morecambe" class="img-fluid" style="width: 50px;">
+  <div class="home-tab tab-content">
+      <div class="tab-pane fade show active" id="mens" role="tabpanel">
+          <div class="row g-4">
+              <% fixtures.forEach(match => { %>
+                  <div class="col-md-4">
+                      <div class="card p-3">
+                          <div class="card-body text-center">
+                              <p class="text-uppercase text-muted"><%= new Date(match.mdate).toDateString() %></p>
+                              <p class="fw-bold">Kenya Premier League</p>
+                              <div class="d-flex justify-content-around align-items-center mb-3">
+                                  <img src="<%= match.home_logo %>" alt="<%= match.hometeam %>" class="img-fluid" style="width: 50px;">
+                                  <h3 class="fw-bold"><%= match.mtime %></h3>
+                                  <img src="<%= match.away_logo %>" alt="<%= match.awayteam %>" class="img-fluid" style="width: 50px;">
+                              </div>
+                              <p class="mb-3"><%= match.hometeam %> vs <%= match.awayteam %></p>
+                              <a href="/pay-ticket/<%= match.matchid %>" class="btn btn-primary w-100 mb-2">Tickets</a>
                           </div>
-                          <p class="mb-3">Chelsea vs Morecambe</p>
-                          <a href="#" class="btn btn-primary w-100 mb-2">Tickets</a>
                       </div>
                   </div>
-              </div>
-            </div>
-        </div>
-    </div>
+              <% }) %>
+          </div>
+      </div>
   </div>
-
-
+</div>
 
   <div class="featured pb-5">
     <ul class="nav nav-tabs justify-content-center mb-4 my-head" id="matchTabs" role="tablist">

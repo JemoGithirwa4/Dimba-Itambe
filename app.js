@@ -22,7 +22,6 @@ db.connect();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-let articles = [];
 let videos = [];
 let teams = [];
 let players = [];
@@ -30,14 +29,36 @@ let stats = [];
 
 app.get("/", async (req, res) => {
     try {
-        const result = await db.query(
-            "SELECT * FROM Articles ORDER BY publisheddate DESC"
-        );
-        articles = result.rows;
+        // Run queries concurrently using Promise.all()
+        const [articlesResult, fixturesResult] = await Promise.all([
+            db.query("SELECT * FROM Articles ORDER BY publisheddate DESC"),
+            db.query(`
+                SELECT 
+                    m.MATCHID, 
+                    m.GAMEWEEK, 
+                    m.MDATE, 
+                    TO_CHAR(m.MTIME, 'HH24:MI') AS MTIME,
+                    m.HOMETEAM, 
+                    m.AWAYTEAM, 
+                    m.HOSTEDBY, 
+                    homeTeam.logo_url AS home_logo,
+                    awayTeam.logo_url AS away_logo
+                FROM MATCH m
+                JOIN team homeTeam ON m.HOMETEAM = homeTeam.teamname
+                JOIN team awayTeam ON m.AWAYTEAM = awayTeam.teamname
+                WHERE m.GAMEWEEK = 1
+                ORDER BY m.MDATE, m.MTIME;
+            `)
+        ]);
 
-        res.render("index.ejs", { activePage: "latest", articles: articles });
-    } catch (err){
-        console.log(err);
+        // Extract rows
+        const articles = articlesResult.rows;
+        const fixtures = fixturesResult.rows;
+
+        res.render("index.ejs", { activePage: "latest", articles, fixtures });
+
+    } catch (err) {
+        console.error(err);
         res.status(500).send("Server Error");
     }
 });
@@ -60,8 +81,34 @@ app.get("/article/:id", async(req, res) => {
     }
 });
 
-app.get("/pay-ticket", (req, res) => {
-    res.render("tickets/ticket-pay.ejs", { activePage: "latest" });
+app.get("/pay-ticket/:matchid", async (req, res) => {
+    try {
+        const matchid = req.params.matchid;
+        const result = await db.query("SELECT * FROM MATCH WHERE MATCHID = $1", [matchid]);
+
+        res.render("tickets/ticket-pay.ejs", { fixture: result.rows[0], activePage: "latest" });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Server error");
+    }
+});
+
+app.post("/purchase-ticket", async (req, res) => {
+    try {
+        const { fixture, phone, email, amount } = req.body;
+        
+        // Process the payment (M-Pesa Daraja API integration here)
+        
+        // If payment is successful, redirect to success page
+        res.redirect("/ticket-success");
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Payment failed. Try again.");
+    }
+});
+
+app.get("/ticket-success", (req, res) => {
+    res.render("tickets/ticket-success.ejs", { activePage: "latest" });
 });
 
 app.get("/watch", (req, res) => {
