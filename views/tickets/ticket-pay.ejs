@@ -6,6 +6,9 @@
             <h3 class="text-center">Buy Match Ticket</h3>
             <hr>
             <form action="/purchase-ticket" method="POST">
+                <input type="hidden" class="form-control" name="date" value="<%= new Date(fixture.mdate).toDateString() %>">
+                <input type="hidden" class="form-control" name="time" value="<%= fixture.mtime%>">
+                <input type="hidden" class="form-control" name="venue" value="<%= fixture.hostedby%>">
                 <div class="mb-3">
                     <label for="match" class="form-label text-primary-mine">Match</label>
                     <input type="text" class="form-control" id="fixture" name="fixture" value="<%= fixture.hometeam %> vs <%= fixture.awayteam %>" readonly>
