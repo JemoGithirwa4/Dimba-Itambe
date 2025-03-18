@@ -75,119 +75,47 @@
       </li>
     </ul>
     <div class="container d-flex justify-content-center align-items-center my-5 gap-5">
-      <div class="card featured-player-card">
-        <div class="player-details">
-          <!-- Stats Section -->
-          <div class="stats text-center">
-            <img src="/images/logo-2.png" alt="Team Logo">
-            <div class="stat">
-              <span class="value">282</span>
-              <span>Appearances</span>
+      <% featured_players.forEach(player => { %>
+        <div class="card featured-player-card">
+          <div class="player-details">
+            <!-- Stats Section -->
+            <div class="stats text-center">
+              <img src="<%= player.logo_url %>" alt="<%= player.teamname %> Logo">
+              <div class="stat">
+                <span class="value"><%= player.matches_played %></span>
+                <span>Appearances</span>
+              </div>
+              <div class="stat">
+                <span class="value"><%= player.minutes_played %></span>
+                <span>Minutes</span>
+              </div>
+              <div class="stat">
+                <span class="value"><%= player.goals %></span>
+                <span>Goals</span>
+              </div>
+              <div class="stat">
+                <span class="value"><%= player.assists %></span>
+                <span>Assists</span>
+              </div>
             </div>
-            <div class="stat">
-              <span class="value">175</span>
-              <span>Goals</span>
-            </div>
-            <div class="stat">
-              <span class="value">82</span>
-              <span>Assists</span>
-            </div>
-            <div class="stat">
-              <span class="value">1,014</span>
-              <span>Shots</span>
-            </div>
-          </div>
-          <!-- Player Image Section -->
-          <div class="player-image">
-            <img src="/images/philotieno.png" alt="Player Image">
-          </div>
-        </div>
-        <!-- Player Info Section -->
-        <div class="player-info">
-          <h3>Phil Otieno</h3>
-          <p>Defender</p>
-          <div class="country">
-            <img src="/images/flag.png" alt="Egypt Flag">
-            <span>Kenya</span>
-          </div>
-        </div>
-      </div>
 
-      <div class="card featured-player-card">
-        <div class="player-details">
-          <!-- Stats Section -->
-          <div class="stats text-center">
-            <img src="/images/logo-2.png" alt="Team Logo">
-            <div class="stat">
-              <span class="value">282</span>
-              <span>Appearances</span>
-            </div>
-            <div class="stat">
-              <span class="value">175</span>
-              <span>Goals</span>
-            </div>
-            <div class="stat">
-              <span class="value">82</span>
-              <span>Assists</span>
-            </div>
-            <div class="stat">
-              <span class="value">1,014</span>
-              <span>Shots</span>
+            <!-- Player Image Section -->
+            <div class="player-image">
+              <img src="<%= player.image_url %>" alt="<%= player.fname %> <%= player.lname %>">
             </div>
           </div>
-          <!-- Player Image Section -->
-          <div class="player-image">
-            <img src="/images/kahata.png" alt="Player Image">
+
+          <!-- Player Info Section -->
+          <div class="player-info">
+            <h3><%= player.fname %> <%= player.lname %></h3>
+            <p><%= player.position %></p>
+            <div class="country">
+              <img src="/images/flag.png" alt="<%= player.nationality %> Flag">
+              <span><%= player.nationality %></span>
+            </div>
           </div>
         </div>
-        <!-- Player Info Section -->
-        <div class="player-info">
-          <h3>Francis Kahata</h3>
-          <p>Forward</p>
-          <div class="country">
-            <img src="/images/flag.png" alt="Egypt Flag">
-            <span>Kenya</span>
-          </div>
-        </div>
-      </div>
-      
-      <div class="card featured-player-card">
-        <div class="player-details">
-          <!-- Stats Section -->
-          <div class="stats text-center">
-            <img src="/images/logo-2.png" alt="Team Logo">
-            <div class="stat">
-              <span class="value">282</span>
-              <span>Appearances</span>
-            </div>
-            <div class="stat">
-              <span class="value">175</span>
-              <span>Goals</span>
-            </div>
-            <div class="stat">
-              <span class="value">82</span>
-              <span>Assists</span>
-            </div>
-            <div class="stat">
-              <span class="value">1,014</span>
-              <span>Shots</span>
-            </div>
-          </div>
-          <!-- Player Image Section -->
-          <div class="player-image">
-            <img src="/images/nkunku.webp" alt="Player Image">
-          </div>
-        </div>
-        <!-- Player Info Section -->
-        <div class="player-info">
-          <h3>Mohamed Samu</h3>
-          <p>Forward</p>
-          <div class="country">
-            <img src="/images/flag.png" alt="Egypt Flag">
-            <span>Egypt</span>
-          </div>
-        </div>
-      </div>
+      <% }); %>
       
     </div>
   </div>
