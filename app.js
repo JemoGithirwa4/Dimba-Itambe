@@ -200,12 +200,32 @@ app.get("/ticket-success", (req, res) => {
     res.render("tickets/ticket-success.ejs", { activePage: "latest" });
 });
 
-app.get("/watch", (req, res) => {
-    res.render("watch.ejs", { activePage: "watch" });
+app.get("/watch", async (req, res) => {
+    try {
+        const result = await db.query(
+            "SELECT * FROM video_highlights ORDER BY uploaded_at DESC"
+        );
+        videos = result.rows;
+
+        res.render("watch.ejs", { activePage: "watch", videos: videos });
+    } catch (err){
+        console.log(err);
+        res.status(500).send("Server Error, cannot fetch Videos");
+    }
 });
 
-app.get("/teams", (req, res) => {
-    res.render("teams.ejs", { activePage: "teams" });
+app.get("/teams", async (req, res) => {
+    try {
+        const result = await db.query(
+            "SELECT * FROM team ORDER BY teamname ASC"
+        );
+        teams = result.rows;
+
+        res.render("teams.ejs", { activePage: "teams", teams: teams });
+    } catch (err){
+        console.log(err);
+        res.status(500).send("Server Error, cannot fetch Videos");
+    }
 });
 
 app.get("/fixtures", (req, res) => {
