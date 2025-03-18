@@ -224,7 +224,7 @@ app.get("/teams", async (req, res) => {
         res.render("teams.ejs", { activePage: "teams", teams: teams });
     } catch (err){
         console.log(err);
-        res.status(500).send("Server Error, cannot fetch Videos");
+        res.status(500).send("Server Error, cannot fetch Teams");
     }
 });
 

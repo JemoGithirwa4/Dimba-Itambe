@@ -3,7 +3,7 @@
 <header class="clubs-header">
     <h1>Clubs</h1>
     <div class="search-bar">
-      <input type="text" class="form-control" placeholder="Search Clubs">
+      <input type="text" class="form-control" id="searchInput" placeholder="Search Clubs">
       <button type="button">
         <i class="fa-solid fa-magnifying-glass"></i>
       </button>
@@ -12,69 +12,21 @@
 
 <div class="container py-5 my-5 teams">
     <div class="row g-4">
-      <!-- Example Card -->
-      <div class="col-md-3">
-        <div class="card club-card h-100">
-          <img src="https://github.com/JemoGithirwa4/Dimba-Itambe-player-images/blob/main/logo/AFC_Leopards.png?raw=true" alt="Club Logo" class="card-img-top mx-auto">
-          <div class="card-body">
-            <h5 class="card-title">AFC Leopards</h5>
-          </div>
-          <div class="card-footer">
-            <a class="d-flex justify-content-between align-items-center" href="#">View club
-                <i class="fa-solid fa-right-long"></i></a>
-          </div>
-        </div>
-      </div>
-      <!-- Duplicate for other clubs -->
-      <div class="col-md-3">
-        <div class="card club-card h-100">
-          <img src="https://github.com/JemoGithirwa4/Dimba-Itambe-player-images/blob/main/logo/Gor_Mahia_FC_(logo).png?raw=true" alt="Club Logo" class="card-img-top mx-auto">
-          <div class="card-body">
-            <h5 class="card-title">Gormahia</h5>
-          </div>
-          <div class="card-footer">
-            <a class="d-flex justify-content-between align-items-center" href="#">View club
-                <i class="fa-solid fa-right-long"></i></a>
+      <% teams.forEach(team => { %>
+        <div class="col-md-3">
+          <div class="card club-card h-100">
+            <img src="<%= team.logo_url %>" alt="<%= team.teamname %> Logo" class="card-img-top mx-auto">
+            <div class="card-body">
+              <h5 class="card-title"><%= team.teamname %></h5>
+            </div>
+            <div class="card-footer">
+              <a class="d-flex justify-content-between align-items-center" href="<%= team.website %>" target="_blank">View club
+                  <i class="fa-solid fa-right-long"></i></a>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-3">
-        <div class="card club-card h-100">
-          <img src="https://github.com/JemoGithirwa4/Dimba-Itambe-player-images/blob/main/logo/Tusker_FC_logo-removebg-preview.png?raw=true" alt="Club Logo" class="card-img-top mx-auto">
-          <div class="card-body">
-            <h5 class="card-title">Tusker FC</h5>
-          </div>
-          <div class="card-footer">
-            <a class="d-flex justify-content-between align-items-center" href="#">View club
-                <i class="fa-solid fa-right-long"></i></a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="card club-card h-100">
-          <img src="https://github.com/JemoGithirwa4/Dimba-Itambe-player-images/blob/main/logo/bandari.jpg?raw=true" alt="Club Logo" class="card-img-top mx-auto">
-          <div class="card-body">
-            <h5 class="card-title">Bandari FC</h5>
-          </div>
-          <div class="card-footer">
-            <a class="d-flex justify-content-between align-items-center" href="#">View club
-                <i class="fa-solid fa-right-long"></i></a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="card club-card h-100">
-          <img src="https://github.com/JemoGithirwa4/Dimba-Itambe-player-images/blob/main/logo/Gor_Mahia_FC_(logo).png?raw=true" alt="Club Logo" class="card-img-top mx-auto">
-          <div class="card-body">
-            <h5 class="card-title">Chelsea</h5>
-          </div>
-          <div class="card-footer">
-            <a class="d-flex justify-content-between align-items-center" href="#">View club
-                <i class="fa-solid fa-right-long"></i></a>
-          </div>
-        </div>
-      </div>
-      <!-- Repeat -->
+      <% }) %>
+    
     </div>
 </div>
 
