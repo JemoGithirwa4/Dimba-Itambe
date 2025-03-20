@@ -249,12 +249,31 @@ app.get("/fixtures", async (req, res) => {
                 ORDER BY m.MDATE, m.MTIME;
             `),
             db.query(`
-                SELECT MATCHID, MDATE, MTIME, HOMETEAM, AWAYTEAM, HOME_SCORE, AWAY_SCORE, HOSTEDBY, STATUS
-                FROM MATCH
-                ORDER BY MDATE, MTIME;
+                SELECT 
+                    m.MATCHID, 
+                    m.MDATE, 
+                    TO_CHAR(m.MTIME, 'HH24:MI') AS MTIME, 
+                    m.HOMETEAM, 
+                    m.AWAYTEAM, 
+                    m.home_score,
+                    m.away_score,
+                    m.HOSTEDBY, 
+                    m.STATUS, 
+                    homeTeam.logo_url AS home_logo,
+                    awayTeam.logo_url AS away_logo
+                FROM MATCH as m
+				JOIN team homeTeam ON m.HOMETEAM = homeTeam.teamname
+                JOIN team awayTeam ON m.AWAYTEAM = awayTeam.teamname
+                WHERE status = 'Completed'
+                ORDER BY m.MDATE, m.MTIME DESC;
             `),
             db.query(`
-                SELECT * FROM league_standings ORDER BY points DESC, goal_difference DESC
+                SELECT 
+                    ls.*, 
+                    t.logo_url
+                FROM league_standings AS ls
+                JOIN team AS t ON ls.team_id = t.teamname
+                ORDER BY ls.points DESC, ls.goal_difference DESC;
             `)
         ]);
 

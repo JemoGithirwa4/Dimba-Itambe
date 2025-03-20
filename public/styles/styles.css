@@ -379,22 +379,8 @@ nav img {
   margin: 10px 0;
 }
 
-.video-thumbnail {
-  margin-top: 30px;
-  text-align: center;
-  height: 300px;
-}
-
-.video-container-2 iframe {
-  width: 300px; /* Set desired width */
-  height: 250px; /* Set desired height */
-}
-
-
-.video-caption {
-  margin-top: 10px;
-  font-size: 16px;
-  color: #fff;
+.ft {
+  color: white;
 }
 
 .res-holder {

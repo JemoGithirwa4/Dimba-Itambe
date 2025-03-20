@@ -10,7 +10,7 @@
             <a class="nav-link fix-nav" href="#results" data-target="results">Results</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fix-nav" href="#tables" data-target="tables">Tables</a>
+            <a class="nav-link fix-nav" href="#tables" data-target="tables">Table</a>
           </li>
       </ul>
     </div>
@@ -45,58 +45,29 @@
     </div>    
 
       <div id="results" class="tab-content container fix-section">
-        <div class="res-holder">
-          <div class="match-info">
-            <div class="row align-items-center">
-              <div class="col-4 text-center">
-                <img src="https://github.com/JemoGithirwa4/Dimba-Itambe-player-images/blob/main/logo/Gor_Mahia_FC_(logo).png?raw=true" alt="Chelsea Logo" class="team-logo">
-                <h5 class="mt-2">Gormahia</h5>
+        <% fixtureResults.forEach(function(match) { %>
+          <div class="res-holder">
+              <!-- Match Information -->
+              <div class="match-info">
+                  <div class="row align-items-center">
+                      <div class="col-4 text-center">
+                          <img src="<%= match.home_logo %>" alt="<%= match.hometeam %> Logo" class="team-logo">
+                          <h5 class="mt-2"><%= match.hometeam %></h5>
+                      </div>
+                      <div class="col-4 text-center">
+                          <h4 class="mb-0"><%= new Date(match.mdate).toDateString() %></h4>
+                          <p class="mb-0">Kenya Premier League</p>
+                          <div class="score-box"><%= match.home_score %> - <%= match.away_score %></div>
+                          <p class="ft">Fulltime</p>
+                      </div>
+                      <div class="col-4 text-center">
+                          <img src="<%= match.away_logo %>" alt="<%= match.awayteam %> Logo" class="team-logo">
+                          <h5 class="mt-2"><%= match.awayteam %></h5>
+                      </div>
+                  </div>
               </div>
-              <div class="col-4 text-center">
-                <h4 class="mb-0">Sat 08 Feb 2025</h4>
-                <p class="mb-0">kenya Premier League</p>
-                <div class="score-box">0 - 0</div>
-              </div>
-              <div class="col-4 text-center">
-                <img src="https://github.com/JemoGithirwa4/Dimba-Itambe-player-images/blob/main/logo/Tusker_FC_logo-removebg-preview.png?raw=true" alt="Bournemouth Logo" class="team-logo">
-                <h5 class="mt-2">Tusker</h5>
-              </div>
-            </div>
           </div>
-        
-          <!-- Video Section -->
-          <div class="video-thumbnail">
-            <div class="video-container-2">
-              <iframe src="https://www.youtube.com/embed/-_DzXt9jSRU?si=R9TLpLWgzdNcqikm" frameborder="0" allowfullscreen></iframe>
-            </div>
-            <p class="video-caption">Highlights: Gormahia 0-0 Tusker</p>
-          </div>
-        </div>
-        <div class="res-holder">
-          <div class="match-info">
-            <div class="row align-items-center">
-              <div class="col-4 text-center">
-                <img src="/images/logo-1.png" alt="Chelsea Logo" class="team-logo">
-                <h5 class="mt-2">Chelsea</h5>
-              </div>
-              <div class="col-4 text-center">
-                <h4 class="mb-0">Tue 14 Jan 2025</h4>
-                <p class="mb-0">Premier League</p>
-                <div class="score-box">2 - 2</div>
-              </div>
-              <div class="col-4 text-center">
-                <img src="/images/logo-2.png" alt="Bournemouth Logo" class="team-logo">
-                <h5 class="mt-2">Bournemouth</h5>
-              </div>
-            </div>
-          </div>
-        
-          <!-- Video Section -->
-          <div class="video-thumbnail">
-            <img src="/images/article-demo.jpg" alt="Match Highlight">
-            <p class="video-caption">Highlights: Chelsea 2-2 Bournemouth</p>
-          </div>
-        </div>
+        <% }); %>
       </div>
 
       <div id="tables" class="tab-content fix-section">
@@ -119,62 +90,22 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td class="position-number">1</td>
-                  <td>
-                    <img src="/images/logo-1.png" alt="Liverpool" class="club-logo"> Liverpool
-                  </td>
-                  <td>20</td>
-                  <td>14</td>
-                  <td>5</td>
-                  <td>1</td>
-                  <td>48</td>
-                  <td>20</td>
-                  <td>28</td>
-                  <td>47</td>
-                </tr>
-                <tr>
-                  <td class="position-number">2</td>
-                  <td>
-                    <img src="/images/logo-2.png" alt="Nottingham Forest" class="club-logo"> Nott'm Forest
-                  </td>
-                  <td>21</td>
-                  <td>12</td>
-                  <td>5</td>
-                  <td>4</td>
-                  <td>30</td>
-                  <td>20</td>
-                  <td>10</td>
-                  <td>41</td>
-                </tr>
-                <tr>
-                  <td class="position-number">3</td>
-                  <td>
-                    <img src="/images/logo-2.png" alt="Arsenal" class="club-logo"> Arsenal
-                  </td>
-                  <td>20</td>
-                  <td>11</td>
-                  <td>7</td>
-                  <td>2</td>
-                  <td>39</td>
-                  <td>18</td>
-                  <td>21</td>
-                  <td>40</td>
-                </tr>
-                <tr>
-                  <td class="position-number">4</td>
-                  <td>
-                    <img src="/images/logo-2.png" alt="Chelsea" class="club-logo"> Chelsea
-                  </td>
-                  <td>21</td>
-                  <td>10</td>
-                  <td>7</td>
-                  <td>4</td>
-                  <td>41</td>
-                  <td>26</td>
-                  <td>15</td>
-                  <td>37</td>
-                </tr>
+                <% standings.forEach((team, index) => { %>
+                  <tr>
+                    <td class="position-number"><%= index + 1 %></td>
+                    <td>
+                      <img src="<%= team.logo_url %>" alt="<%= team.team_id %>" class="club-logo me-2"> <%= team.team_id %>
+                    </td>
+                    <td><%= team.matches_played %></td>
+                    <td><%= team.wins %></td>
+                    <td><%= team.draws %></td>
+                    <td><%= team.losses %></td>
+                    <td><%= team.goals_for %></td>
+                    <td><%= team.goals_against %></td>
+                    <td><%= team.goal_difference %></td>
+                    <td><%= team.points %></td>
+                  </tr>
+                <% }); %>          
               </tbody>
             </table>
           </div>
