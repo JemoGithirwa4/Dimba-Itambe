@@ -1,0 +1,53 @@
+<%- include("../partials/header.ejs") %>
+
+<div class="hold">
+
+    <div class="container py-5">
+        <h1 class="text-center text-primary-mine"><%= job.title %></h1>
+        
+        <div class="card p-4 shadow-sm">
+            <p><strong>📍 Location:</strong> <%= job.location %></p>
+            <p><strong>🕒 Job Type:</strong> <%= job.job_type %></p>
+            <p><strong>👥 Open Positions:</strong> <%= job.openings %></p>
+            <p><strong>📅 Application Deadline:</strong> <%= new Date(job.deadline).toDateString() %></p>
+
+            <hr>
+
+            <h4 class="fw-bold">📝 Job Description</h4>
+            <p><%= job.description %></p>
+
+            <% if (job.requirements) { %>
+            <h4 class="fw-bold">📌 Requirements</h4>
+            <ul>
+                <% JSON.parse(job.requirements).forEach(requirement => { %>
+                <li><%= requirement %></li>
+                <% }); %>
+            </ul>
+            <% } %>
+
+            <% if (job.responsibilities) { %>
+            <h4 class="fw-bold">🎯 Responsibilities</h4>
+            <ul>
+                <% JSON.parse(job.responsibilities).forEach(responsibility => { %>
+                <li><%= responsibility %></li>
+                <% }); %>
+            </ul>
+            <% } %>
+
+            <hr>
+
+            <h4 class="fw-bold">📩 How to Apply</h4>
+            <p>
+            To apply for this position, please email your CV and Cover Letter to:  
+            <a href="mailto:jagithirwa@gmail.com" class="fw-bold text-primary">jagithirwa@gmail.com</a>
+            </p>
+            <p>Ensure the subject line includes the job title: <strong>"Application - <%= job.title %>"</strong></p>
+
+            <a href="mailto:jagithirwa@gmail.com?subject=Application - <%= job.title %>" class="btn btn-success w-100 mt-3">
+            Apply Now
+            </a>
+        </div>
+    </div>
+</div>
+
+<%- include("../partials/footer.ejs") %>

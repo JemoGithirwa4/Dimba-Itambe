@@ -294,12 +294,28 @@ app.get("/fixtures", async (req, res) => {
     }
 });
 
-app.get("/shop", (req, res) => {
-    res.render("shop.ejs", { activePage: "shop" });
+app.get("/careers", async (req, res) => {
+    try {
+        const result = await db.query(
+          "SELECT id, title, location, job_type, openings, description, deadline FROM jobs WHERE deadline >= CURRENT_DATE ORDER BY created_at DESC"
+        );
+        res.render("careers.ejs", { activePage: "careers", jobs: result.rows });
+      } catch (error) {
+        console.error("Error fetching jobs:", error);
+        res.status(500).send("Server Error");
+      }
 });
 
-app.get("/careers", (req, res) => {
-    res.render("careers.ejs", { activePage: "careers" });
+app.get("/job/:id", async (req, res) => {
+    try {
+        const id = req.params.id;
+        const result = await db.query("SELECT * FROM jobs WHERE id = $1", [id]);
+        console.log(result.rows[0]);
+        res.render("careers/job-details.ejs", { activePage: "careers", job: result.rows[0] });
+    } catch (error) {
+        console.error("Error fetching jobs:", error);
+        res.status(500).send("Server Error");
+    }
 });
 
 app.listen(PORT, () => {

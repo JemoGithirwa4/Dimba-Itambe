@@ -15,24 +15,30 @@
       </ul>
     </div>
 
-    <div id="fixtures" class="container tab-content pb-4 fix-section live">        
+    <div id="fixtures" class="container tab-content pb-4 fix-section live">
+      <div class="search-bar">
+        <input type="text" class="form-control mb-3" id="searchFixtures" placeholder="Search Fixture">
+        <button type="button">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>        
       <p class="text-muted">Dates/Times are shown in Kenyan time and are subject to change</p>
       <% fixturesResult.forEach(match => { %>
         <div class="match-card mb-5">
             <div class="row align-items-center text-center">
                 <div class="col-4">
                     <img src="<%= match.home_logo %>" alt="<%= match.hometeam %> Logo" class="team-logo">
-                    <h5 class="mb-0 mt-2"><%= match.hometeam %></h5>
+                    <h5 class="mb-0 mt-2 home-team"><%= match.hometeam %></h5>
                 </div>
                 <div class="col-4">
-                    <p class="mb-0"><%= new Date(match.mdate).toDateString() %></p>
+                    <p class="mb-0 match-date"><%= new Date(match.mdate).toDateString() %></p>
                     <p class="text-muted mb-0">Kenya Premier League</p>
-                    <h4 class="fw-bold"><%= match.mtime %> HRS</h4>
-                    <p class="text-muted small"><%= match.hostedby %></p>
+                    <h4 class="fw-bold match-time"><%= match.mtime %> HRS</h4>
+                    <p class="text-muted small hosted-by"><%= match.hostedby %></p>
                 </div>
                 <div class="col-4">
                     <img src="<%= match.away_logo %>" alt="<%= match.awayteam %> Logo" class="team-logo">
-                    <h5 class="mb-0 mt-2"><%= match.awayteam %></h5>
+                    <h5 class="mb-0 mt-2 away-team"><%= match.awayteam %></h5>
                 </div>
             </div>
             <div class="row mt-4">
@@ -45,6 +51,12 @@
     </div>    
 
       <div id="results" class="tab-content container fix-section">
+        <div class="search-bar">
+          <input type="text" class="form-control mb-3" id="searchResults" placeholder="Search Result">
+          <button type="button">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </div> 
         <% fixtureResults.forEach(function(match) { %>
           <div class="res-holder">
               <!-- Match Information -->
@@ -52,7 +64,7 @@
                   <div class="row align-items-center">
                       <div class="col-4 text-center">
                           <img src="<%= match.home_logo %>" alt="<%= match.hometeam %> Logo" class="team-logo">
-                          <h5 class="mt-2"><%= match.hometeam %></h5>
+                          <h5 class="mt-2 home-team"><%= match.hometeam %></h5>
                       </div>
                       <div class="col-4 text-center">
                           <h4 class="mb-0"><%= new Date(match.mdate).toDateString() %></h4>
@@ -62,7 +74,7 @@
                       </div>
                       <div class="col-4 text-center">
                           <img src="<%= match.away_logo %>" alt="<%= match.awayteam %> Logo" class="team-logo">
-                          <h5 class="mt-2"><%= match.awayteam %></h5>
+                          <h5 class="mt-2 away-team"><%= match.awayteam %></h5>
                       </div>
                   </div>
               </div>

@@ -13,4 +13,49 @@ $(document).ready(function () {
           $("#" + targetId).fadeIn();
       }
   });
+
+  $("#searchFixtures").on("keyup", function () {
+    let filter = $(this).val().toLowerCase();
+
+    // Filter fixtures
+    $(".match-card").each(function () {
+        let homeTeam = $(this).find(".home-team").text().toLowerCase();
+        let awayTeam = $(this).find(".away-team").text().toLowerCase();
+        let hostedBy = $(this).find(".hosted-by").text().toLowerCase();
+
+        if (homeTeam.includes(filter) || awayTeam.includes(filter) || hostedBy.includes(filter)) {
+            $(this).show();
+        } else {
+            $(this).hide();
+        }
+    });
+
+    // Filter results
+    $(".res-holder").each(function () {
+        let homeTeam = $(this).find(".home-team").text().toLowerCase();
+        let awayTeam = $(this).find(".away-team").text().toLowerCase();
+
+        if (homeTeam.includes(filter) || awayTeam.includes(filter)) {
+            $(this).show();
+        } else {
+            $(this).hide();
+        }
+    });
+  });
+
+  $("#searchResults").on("keyup", function () {
+    let filter = $(this).val().toLowerCase();
+
+    // Filter results
+    $(".res-holder").each(function () {
+        let homeTeam = $(this).find(".home-team").text().toLowerCase();
+        let awayTeam = $(this).find(".away-team").text().toLowerCase();
+
+        if (homeTeam.includes(filter) || awayTeam.includes(filter)) {
+            $(this).show();
+        } else {
+            $(this).hide();
+        }
+    });
+  });
 });
