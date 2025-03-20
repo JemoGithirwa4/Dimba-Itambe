@@ -228,8 +228,51 @@ app.get("/teams", async (req, res) => {
     }
 });
 
-app.get("/fixtures", (req, res) => {
-    res.render("fixtures.ejs", { activePage: "fixtures" });
+app.get("/fixtures", async (req, res) => {
+    try {
+        const [fixtures, results, leagueTable] = await Promise.all([
+            db.query(`
+                SELECT 
+                    m.MATCHID, 
+                    m.MDATE, 
+                    TO_CHAR(m.MTIME, 'HH24:MI') AS MTIME, 
+                    m.HOMETEAM, 
+                    m.AWAYTEAM, 
+                    m.HOSTEDBY, 
+                    m.STATUS, 
+                    homeTeam.logo_url AS home_logo,
+                    awayTeam.logo_url AS away_logo
+                FROM MATCH as m
+				JOIN team homeTeam ON m.HOMETEAM = homeTeam.teamname
+                JOIN team awayTeam ON m.AWAYTEAM = awayTeam.teamname
+                WHERE status = 'Not Completed'
+                ORDER BY m.MDATE, m.MTIME;
+            `),
+            db.query(`
+                SELECT MATCHID, MDATE, MTIME, HOMETEAM, AWAYTEAM, HOME_SCORE, AWAY_SCORE, HOSTEDBY, STATUS
+                FROM MATCH
+                ORDER BY MDATE, MTIME;
+            `),
+            db.query(`
+                SELECT * FROM league_standings ORDER BY points DESC, goal_difference DESC
+            `)
+        ]);
+
+        // Extract rows
+        const fixturesResult = fixtures.rows;
+        const fixtureResults = results.rows;
+        const standings = leagueTable.rows;
+
+        res.render("fixtures.ejs", { 
+            activePage: "fixtures", 
+            fixturesResult,
+            fixtureResults,
+            standings
+        });
+    } catch (err) {
+        console.error("Error fetching fixtures:", err);
+        res.status(500).send("Server Error, unable to fetch fixtures");
+    }
 });
 
 app.get("/shop", (req, res) => {

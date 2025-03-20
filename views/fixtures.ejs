@@ -16,34 +16,33 @@
     </div>
 
     <div id="fixtures" class="container tab-content pb-4 fix-section live">        
-        <div class="d-flex justify-content-between align-items-center mb-4">
-          <h3 class="text-primary-mine">March</h3>
-        </div>
-        <p class="text-muted">Dates/Times are shown in Kenyan time and are subject to change</p>
-        <div class="match-card">
+      <p class="text-muted">Dates/Times are shown in Kenyan time and are subject to change</p>
+      <% fixturesResult.forEach(match => { %>
+        <div class="match-card mb-5">
             <div class="row align-items-center text-center">
-              <div class="col-4">
-                <img src="https://github.com/JemoGithirwa4/Dimba-Itambe-player-images/blob/main/logo/Gor_Mahia_FC_(logo).png?raw=true" alt="Chelsea Logo" class="team-logo">
-                <h5 class="mb-0">Gormahia</h5>
-              </div>
-              <div class="col-4">
-                <p class="mb-0">Sun 2 Mar 2025</p>
-                <p class="text-muted mb-0">Premier League</p>
-                <h4 class="fw-bold">16:30</h4>
-                <p class="text-muted small">TNT Sports</p>
-              </div>
-              <div class="col-4">
-                <img src="https://github.com/JemoGithirwa4/Dimba-Itambe-player-images/blob/main/logo/AFC_Leopards.png?raw=true" alt="Bournemouth Logo" class="team-logo">
-                <h5 class="mb-0">AFC Leopards</h5>
-              </div>
+                <div class="col-4">
+                    <img src="<%= match.home_logo %>" alt="<%= match.hometeam %> Logo" class="team-logo">
+                    <h5 class="mb-0 mt-2"><%= match.hometeam %></h5>
+                </div>
+                <div class="col-4">
+                    <p class="mb-0"><%= new Date(match.mdate).toDateString() %></p>
+                    <p class="text-muted mb-0">Kenya Premier League</p>
+                    <h4 class="fw-bold"><%= match.mtime %> HRS</h4>
+                    <p class="text-muted small"><%= match.hostedby %></p>
+                </div>
+                <div class="col-4">
+                    <img src="<%= match.away_logo %>" alt="<%= match.awayteam %> Logo" class="team-logo">
+                    <h5 class="mb-0 mt-2"><%= match.awayteam %></h5>
+                </div>
             </div>
             <div class="row mt-4">
-              <div class="col-12">
-                <a href="#" class="btn btn-primary w-100">Tickets </a>
-              </div>
+                <div class="col-12">
+                    <a href="/pay-ticket/<%= match.matchid %>" target="_blank" class="btn btn-primary w-100">Tickets</a>
+                </div>
             </div>
-          </div>      
-      </div>    
+        </div>
+      <% }); %>            
+    </div>    
 
       <div id="results" class="tab-content container fix-section">
         <div class="res-holder">
