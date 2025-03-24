@@ -260,12 +260,27 @@ app.get("/fixtures", async (req, res) => {
                     m.HOSTEDBY, 
                     m.STATUS, 
                     homeTeam.logo_url AS home_logo,
-                    awayTeam.logo_url AS away_logo
-                FROM MATCH as m
-				JOIN team homeTeam ON m.HOMETEAM = homeTeam.teamname
+                    awayTeam.logo_url AS away_logo,
+                    COALESCE(
+                        json_agg(
+                            json_build_object(
+                                'goalid', g.goalid, 
+                                'scorer', p.lname, 
+                                'teamname', g.teamname, 
+                                'time_min', g.time_min,
+                                'goaltype', g.goal_type
+                            ) 
+                            ORDER BY g.time_min ASC
+                        ) FILTER (WHERE g.goalid IS NOT NULL), '[]'
+                    ) AS goals
+                FROM MATCH AS m
+                JOIN team homeTeam ON m.HOMETEAM = homeTeam.teamname
                 JOIN team awayTeam ON m.AWAYTEAM = awayTeam.teamname
-                WHERE status = 'Completed'
-                ORDER BY m.MDATE, m.MTIME DESC;
+                LEFT JOIN goal g ON g.matchid = m.matchid
+                LEFT JOIN player p ON g.playerid = p.playerid
+                WHERE m.status = 'Completed'
+                GROUP BY m.MATCHID, homeTeam.logo_url, awayTeam.logo_url
+                ORDER BY m.MDATE DESC, m.MTIME DESC;
             `),
             db.query(`
                 SELECT 

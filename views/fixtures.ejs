@@ -59,7 +59,6 @@
         </div> 
         <% fixtureResults.forEach(function(match) { %>
           <div class="res-holder">
-              <!-- Match Information -->
               <div class="match-info">
                   <div class="row align-items-center">
                       <div class="col-4 text-center">
@@ -77,9 +76,38 @@
                           <h5 class="mt-2 away-team"><%= match.awayteam %></h5>
                       </div>
                   </div>
+                  <div class="row align-items-center">
+                    <div class="col-4 d-flex flex-column text-center">
+                      <% if (match.goals.length > 0) { %>
+                        <% match.goals.forEach(function(goal) { %>
+                          <% if (goal.teamname === match.hometeam) { %>
+                            <% if (goal.goaltype === 'Own Goal') { %>
+                              <strong class="text-danger">Own Goal</strong> - <%= goal.scorer %> (<%= goal.teamname %>) - <%= goal.time_min %>’
+                            <% } else { %>
+                              <p><%= goal.scorer %> <%= goal.time_min %>’ <i class="fa-solid fa-futbol"></i></p>
+                            <% } %>
+                          <% } %>
+                        <% }); %>
+                      <% } %> 
+                    </div>
+                    <div class="col-4 text-center d-flex flex-column"></div>
+                    <div class="col-4 text-center d-flex flex-column">
+                      <% if (match.goals.length > 0) { %>
+                        <% match.goals.forEach(function(goal) { %>
+                          <% if (goal.teamname === match.awayteam) { %>
+                            <% if (goal.goaltype === 'Own Goal') { %>
+                              <p><%= goal.scorer %> <%= goal.time_min %>’ (Own goal) <strong class="text-danger"><i class="fa-solid fa-futbol"></i></strong></p>
+                            <% } else { %>
+                              <p><%= goal.scorer %> <%= goal.time_min %>’ <i class="fa-solid fa-futbol"></i></p>
+                            <% } %>
+                          <% } %>
+                        <% }); %>
+                      <% } %>
+                    </div>
+                  </div>
               </div>
           </div>
-        <% }); %>
+        <% }); %>        
       </div>
 
       <div id="tables" class="tab-content fix-section">
