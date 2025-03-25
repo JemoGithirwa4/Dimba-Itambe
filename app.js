@@ -11,6 +11,13 @@ const PORT = process.env.PORT || 3005;
 
 const app = express();
 
+let fixture2 = " "; 
+let phone2 = " ";
+let email2 = " "; 
+let date2 = "";
+let time2 = "";
+let venue2 = "";
+
 env.config();
 
 const db = new pg.Client({
@@ -36,6 +43,51 @@ async function generateToken() {
     } catch (error) {
         console.error("Token Error:", error.response?.data || error.message);
         throw new Error("Failed to get access token.");
+    }
+}
+
+async function sendStkPush() {
+    const token = await generateToken();
+    const date = new Date();
+    const timestamp =
+        date.getFullYear() +
+        ("0" + (date.getMonth() + 1)).slice(-2) +
+        ("0" + date.getDate()).slice(-2) +
+        ("0" + date.getHours()).slice(-2) +
+        ("0" + date.getMinutes()).slice(-2) +
+        ("0" + date.getSeconds()).slice(-2);
+
+    const shortCode = "174379"; // ✅ Sandbox Paybill
+    const passkey = process.env.PASS_KEY;
+
+    const stk_password = Buffer.from(shortCode + passkey + timestamp).toString("base64");
+
+    const url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest";
+
+    const headers = {
+        Authorization: "Bearer " + token,
+        "Content-Type": "application/json"
+    };
+
+    const requestBody = {
+        BusinessShortCode: shortCode,
+        Password: stk_password,
+        Timestamp: timestamp,
+        TransactionType: "CustomerPayBillOnline",
+        Amount: "10",
+        PartyA: "254759807494", // ✅ Ensure this is a test M-Pesa number
+        PartyB: shortCode,
+        PhoneNumber: "254759807494", // ✅ Must match PartyA
+        CallBackURL: "https://yourwebsite.co.ke/callbackurl",
+        AccountReference: "TestAccount",
+        TransactionDesc: "Test Payment"
+    };
+
+    try {
+        const response = await axios.post(url, requestBody, { headers });
+        console.log("STK Push Response:", response.data);
+    } catch (error) {
+        console.error("STK Push Error:", error.response?.data || error.message);
     }
 }
   
@@ -137,7 +189,21 @@ app.get("/pay-ticket/:matchid", async (req, res) => {
 
 app.post("/purchase-ticket", async (req, res) => {
     try {
-        const { fixture, phone, email, amount, date, time, venue } = req.body;
+        const { fixture, phone, email, date, time, venue } = req.body;
+        const amount = "1";
+        fixture2 = fixture;
+        phone2 = phone;
+        email2 = email;
+        date2 = date;
+        time2 = time;
+        venue2 = venue;
+
+        
+        // Format phone number
+        let formattedPhone = /^07\d{8}$/.test(phone) ? "254" + phone.substring(1) : phone;
+        if (!/^2547\d{8}$/.test(formattedPhone)) {
+            return res.status(400).json({ error: "Invalid phone number format." });
+        }
 
         // Generate unique ticket ID
         const ticketId = uuidv4().slice(0, 8).toUpperCase();
@@ -170,7 +236,7 @@ app.post("/purchase-ticket", async (req, res) => {
             service: "gmail",
             auth: {
                 user: "jagithirwa@gmail.com",
-                pass: process.env.EMAIL_PWD,  // Use an App Password
+                pass: process.env.EMAIL_PWD,
             },
         });
 
@@ -184,20 +250,167 @@ app.post("/purchase-ticket", async (req, res) => {
                 {
                     filename: "qrcode.png",
                     content: qrBuffer,
-                    cid: "qrCodeImage", // Content ID for embedding
+                    cid: "qrCodeImage",
                 },
             ],
         });
 
-        res.send("Ticket sent successfully!");
+        // Generate M-Pesa token and STK push request
+        const token = await generateToken();
+        const timestamp = new Date().toISOString().replace(/[-:T.]/g, "").slice(0, 14);
+        const shortCode = "174379";
+        const stk_password = Buffer.from(`${shortCode}${process.env.PASS_KEY}${timestamp}`).toString("base64");
+
+        const stkRequestBody = {
+            BusinessShortCode: shortCode,
+            Password: stk_password,
+            Timestamp: timestamp,
+            TransactionType: "CustomerPayBillOnline",
+            Amount: amount,
+            PartyA: formattedPhone,
+            PartyB: shortCode,
+            PhoneNumber: formattedPhone,
+            CallBackURL: "https://c20e-105-29-165-235.ngrok-free.app/",
+            AccountReference: "MatchTicket",
+            TransactionDesc: `Ticket for ${fixture}`
+        };
+
+        // Send STK Push request
+        const stkResponse = await axios.post(
+            "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest",
+            stkRequestBody,
+            { headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" } }
+        );
+
+        // Store in pending_payments table
+        await db.query(
+            `INSERT INTO pending_payments 
+             (checkout_request_id, phone, email, fixture, amount, match_date, match_time, venue)
+             VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
+            [
+                stkResponse.data.CheckoutRequestID,
+                formattedPhone,
+                email,
+                fixture,
+                amount,
+                date,
+                time,
+                venue
+            ]
+        );
+
+        // Auto-trigger mock callback in development
+        if (process.env.NODE_ENV === "development") {
+            setTimeout(async () => {
+                try {
+                    const mockCallback = {
+                        Body: {
+                            stkCallback: {
+                                ResultCode: 0,
+                                CheckoutRequestID: stkResponse.data.CheckoutRequestID,
+                                CallbackMetadata: {
+                                    Item: [
+                                        { Name: "Amount", Value: amount },
+                                        { Name: "MpesaReceiptNumber", Value: "MPESA" + Math.random().toString(36).substring(2, 10).toUpperCase() },
+                                        { Name: "PhoneNumber", Value: formattedPhone }
+                                    ]
+                                }
+                            }
+                        }
+                    };
+                    await axios.post("https://c20e-105-29-165-235.ngrok-free.app/mpesa-callback", mockCallback);
+                } catch (mockError) {
+                    console.error("Mock callback failed:", mockError.message);
+                }
+            }, 5000);
+        }
+
+        res.redirect("/stk-success");
+
     } catch (err) {
-        console.error(err);
-        res.status(500).send("Payment failed. Try again.");
+        console.error("STK Push Error:", err.response?.data || err.message);
+        res.status(500).json({ error: "Payment request failed." });
     }
 });
 
-app.get("/ticket-success", (req, res) => {
-    res.render("tickets/ticket-success.ejs", { activePage: "latest" });
+// Updated callback handler with crash protection
+app.post("/mpesa-callback", async (req, res) => {
+    try {
+        // Safely access callback data
+        const callbackData = req.body;
+        if (!callbackData?.Body?.stkCallback) {
+            console.error("Invalid callback structure:", callbackData);
+            return res.status(400).send("Invalid callback format");
+        }
+
+        const resultCode = callbackData.Body.stkCallback.ResultCode;
+        const checkoutRequestID = callbackData.Body.stkCallback.CheckoutRequestID;
+
+        // Always respond to M-Pesa first to prevent timeouts
+        res.sendStatus(200);
+
+        // Process successful payments only
+        if (resultCode === 0) {
+            try {
+                const metadata = callbackData.Body.stkCallback.CallbackMetadata?.Item || [];
+                const amount = metadata.find(item => item.Name === "Amount")?.Value;
+                const phone = metadata.find(item => item.Name === "PhoneNumber")?.Value;
+                const mpesaReceipt = metadata.find(item => item.Name === "MpesaReceiptNumber")?.Value;
+
+                // Retrieve pending payment details
+                const pendingPayment = await db.query(
+                    `SELECT * FROM pending_payments WHERE checkout_request_id = $1`,
+                    [checkoutRequestID]
+                );
+
+                if (pendingPayment.rows.length) {
+                    const { email, fixture, match_date, match_time, venue } = pendingPayment.rows[0];
+
+                    // Generate ticket
+                    const ticketId = uuidv4().slice(0, 8).toUpperCase();
+                    await db.query(
+                        `INSERT INTO tickets 
+                         (ticket_id, fixture, match_date, match_time, venue, email)
+                         VALUES ($1, $2, $3, $4, $5, $6)`,
+                        [ticketId, fixture, match_date, match_time, venue, email]
+                    );
+
+                    // Cleanup
+                    await db.query(
+                        `DELETE FROM pending_payments WHERE checkout_request_id = $1`,
+                        [checkoutRequestID]
+                    );
+
+                    // Generate and email QR code
+                    const qrData = `Ticket ID: ${ticketId}\nMatch: ${fixture}\nDate: ${match_date}\nTime: ${match_time}\nVenue: ${venue}`;
+                    const qrBuffer = await QRCode.toBuffer(qrData);
+
+                    await transporter.sendMail({
+                        to: email,
+                        subject: "Your Match Ticket",
+                        html: `<h1>Ticket for ${fixture}</h1><p>Scan the QR code below:</p><img src="cid:qr"/>`,
+                        attachments: [{
+                            filename: "ticket.png",
+                            content: qrBuffer,
+                            cid: "qr"
+                        }]
+                    });
+                }
+            } catch (processError) {
+                console.error("Payment processing failed:", processError);
+            }
+        } else {
+            console.log("Payment canceled or failed:", callbackData.Body.stkCallback.ResultDesc);
+        }
+
+    } catch (err) {
+        console.error("Callback Error:", err);
+        // Already responded, no need to send another response
+    }
+});
+
+app.get("/stk-success", (req, res) => {
+    res.render("tickets/ticket.ejs");
 });
 
 app.get("/watch", async (req, res) => {
