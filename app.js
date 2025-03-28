@@ -120,7 +120,7 @@ app.get("/", async (req, res) => {
                 FROM MATCH m
                 JOIN team homeTeam ON m.HOMETEAM = homeTeam.teamname
                 JOIN team awayTeam ON m.AWAYTEAM = awayTeam.teamname
-                WHERE m.GAMEWEEK = 1
+                WHERE m.GAMEWEEK = 1 AND status = 'Not Completed'
                 ORDER BY m.MDATE, m.MTIME;
             `),
             db.query(`
@@ -438,6 +438,28 @@ app.get("/teams", async (req, res) => {
     } catch (err){
         console.log(err);
         res.status(500).send("Server Error, cannot fetch Teams");
+    }
+});
+
+app.get("/players", async (req, res) => {
+    try {
+        const result = await db.query(
+            `
+            SELECT 
+                player.*, 
+                team.logo_url 
+            FROM player 
+            JOIN team ON player.teamname  = team.teamname
+            ORDER BY player.playerid ASC;
+            `
+        );
+        
+        players = result.rows;
+
+        res.render("players.ejs", { activePage: "players", players: players });
+    } catch (err){
+        console.log(err);
+        res.status(500).send("Server Error, cannot fetch Players");
     }
 });
 

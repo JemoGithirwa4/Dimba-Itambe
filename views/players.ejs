@@ -1,0 +1,45 @@
+<%- include("partials/header.ejs") %>
+
+<div class="hold py-5">
+    <div class="container">
+        <div class="search-bar">
+            <input type="text" class="form-control mb-5" id="searchPlayers" placeholder="Search Player">
+            <button type="button">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+        <div class="d-flex justify-content-center align-items-center flex-wrap gap-5" id="players-container">
+            <% players.forEach(player => { %>
+                <div class="card featured-player-card">
+                    <div class="player-details">
+                      <!-- Stats Section -->
+                      <div class="stats2 text-center">
+                        <img src="<%= player.logo_url %>" alt="<%= player.teamname %> Logo">
+                        <span class="d-none"><%= player.teamname %></span>
+                        <div class="stat">
+                          <span class="kit"><%= player.kitnumber %></span>
+                        </div>
+                      </div>
+          
+                      <!-- Player Image Section -->
+                      <div class="player-image">
+                        <img src="<%= player.image_url %>" alt="<%= player.fname %> <%= player.lname %>">
+                      </div>
+                    </div>
+          
+                    <!-- Player Info Section -->
+                    <div class="player-info">
+                      <h3><%= player.fname %> <%= player.lname %></h3>
+                      <p><%= player.position %></p>
+                      <div class="country">
+                        <img src="/images/flag.png" alt="<%= player.nationality %> Flag">
+                        <span><%= player.nationality %></span>
+                      </div>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+</div>
+
+<%- include("partials/footer.ejs") %>

@@ -32,6 +32,9 @@
             <a class="nav-link <%= activePage === 'teams' ? 'active' : '' %>" href="/teams">Teams</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link <%= activePage === 'players' ? 'active' : '' %>" href="/players">Players</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link <%= activePage === 'fixtures' ? 'active' : '' %>"  href="/fixtures">Fixtures</a>
           </li>
           <!-- <li class="nav-item">
@@ -52,10 +55,11 @@
             <a class="nav-link disabled" aria-disabled="true">Disabled</a>
           </li>
         </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+        <div class="d-flex ms-auto">
+          <a href="https://facebook.com" class="me-3"><i class="fa-brands fa-facebook fa-lg"></i></a>
+          <a href="https://twitter.com" class="me-3"><i class="fa-brands fa-twitter fa-lg"></i></a>
+          <a href="https://instagram.com" class="me-3"><i class="fa-brands fa-instagram fa-lg"></i></a>
+        </div>      
       </div>
     </div>
   </nav>
