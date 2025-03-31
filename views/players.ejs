@@ -1,45 +1,103 @@
 <%- include("partials/header.ejs") %>
 
-<div class="hold py-5">
-    <div class="container">
-        <div class="search-bar">
-            <input type="text" class="form-control mb-5" id="searchPlayers" placeholder="Search Player">
-            <button type="button">
-              <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
-        </div>
-        <div class="d-flex justify-content-center align-items-center flex-wrap gap-5" id="players-container">
-            <% players.forEach(player => { %>
-                <div class="card featured-player-card">
-                    <div class="player-details">
-                      <!-- Stats Section -->
-                      <div class="stats2 text-center">
-                        <img src="<%= player.logo_url %>" alt="<%= player.teamname %> Logo">
-                        <span class="d-none"><%= player.teamname %></span>
-                        <div class="stat">
-                          <span class="kit"><%= player.kitnumber %></span>
-                        </div>
-                      </div>
-          
-                      <!-- Player Image Section -->
-                      <div class="player-image">
-                        <img src="<%= player.image_url %>" alt="<%= player.fname %> <%= player.lname %>">
-                      </div>
-                    </div>
-          
-                    <!-- Player Info Section -->
-                    <div class="player-info">
-                      <h3><%= player.fname %> <%= player.lname %></h3>
-                      <p><%= player.position %></p>
-                      <div class="country">
-                        <img src="/images/flag.png" alt="<%= player.nationality %> Flag">
-                        <span><%= player.nationality %></span>
+<div class="hold">
+  <div>
+    <ul class="nav nav-tabs justify-content-center mb-4 custom-nav">
+        <li class="nav-item">
+          <a class="nav-link fix-nav active" href="#fixtures" data-target="fixtures">Players</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fix-nav" href="#results" data-target="results">Stats</a>
+        </li>
+    </ul>
+  </div>
+  <div class="container tab-content pb-4 fix-section live" id="fixtures">
+      <div class="search-bar">
+          <input type="text" class="form-control mb-5" id="searchPlayers" placeholder="Search Player">
+          <button type="button">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+      </div>
+      <div class="d-flex justify-content-center align-items-center flex-wrap gap-5" id="players-container">
+          <% players.forEach(player => { %>
+              <div class="card featured-player-card">
+                  <div class="player-details">
+                    <!-- Stats Section -->
+                    <div class="stats2 text-center">
+                      <img src="<%= player.logo_url %>" alt="<%= player.teamname %> Logo">
+                      <span class="d-none"><%= player.teamname %></span>
+                      <div class="stat">
+                        <span class="kit"><%= player.kitnumber %></span>
                       </div>
                     </div>
-                </div>
-            <% }); %>
-        </div>
+          
+                    <!-- Player Image Section -->
+                    <div class="player-image">
+                      <img src="<%= player.image_url %>" alt="<%= player.fname %> <%= player.lname %>">
+                    </div>
+                  </div>
+          
+                  <!-- Player Info Section -->
+                  <div class="player-info">
+                    <h3><%= player.fname %> <%= player.lname %></h3>
+                    <p><%= player.position %></p>
+                    <div class="country">
+                      <img src="/images/flag.png" alt="<%= player.nationality %> Flag">
+                      <span><%= player.nationality %></span>
+                    </div>
+                  </div>
+              </div>
+          <% }); %>
+      </div>
+  </div>
+  <div id="results" class="tab-content container fix-section">
+    <div class="search-bar">
+      <input type="text" class="form-control mb-5" id="searchPlayersStat" placeholder="Search Player">
+      <button type="button">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
     </div>
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered">
+          <thead class="table-dark">
+              <tr>
+                  <th>#</th>
+                  <th>Player Name</th>
+                  <th>Team</th>
+                  <th>Position</th>
+                  <th>Goals</th>
+                  <th>Assists</th>
+                  <th>Yellow Cards</th>
+                  <th>Red Cards</th>
+                  <th>Matches Played</th>
+                  <th>Minutes Played</th>
+              </tr>
+          </thead>
+          <tbody>
+              <% if (stats.length > 0) { %>
+                  <% stats.forEach((stat, index) => { %>
+                      <tr>
+                          <td><%= index + 1 %></td>
+                          <td class="player-name"><%= stat.fname + " " + stat.lname %></td>
+                          <td><%= stat.teamname %></td>
+                          <td><%= stat.position %></td>
+                          <td><%= stat.goals %></td>
+                          <td><%= stat.assists %></td>
+                          <td><%= stat.yellowcards %></td>
+                          <td><%= stat.redcards %></td>
+                          <td><%= stat.matches_played %></td>
+                          <td><%= stat.minutes_played %></td>
+                      </tr>
+                  <% }); %>
+              <% } else { %>
+                  <tr>
+                      <td colspan="11" class="text-center text-muted">No stats data available.</td>
+                  </tr>
+              <% } %>
+          </tbody>
+      </table>        
+    </div>
+  </div>
 </div>
 
 <%- include("partials/footer.ejs") %>

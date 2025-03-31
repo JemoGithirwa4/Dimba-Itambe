@@ -443,20 +443,38 @@ app.get("/teams", async (req, res) => {
 
 app.get("/players", async (req, res) => {
     try {
-        const result = await db.query(
-            `
-            SELECT 
-                player.*, 
-                team.logo_url 
-            FROM player 
-            JOIN team ON player.teamname  = team.teamname
-            ORDER BY player.playerid ASC;
-            `
-        );
-        
-        players = result.rows;
+        const [playersResult, statsResult] = await Promise.all([
+            db.query(`
+                SELECT 
+                    player.*, 
+                    team.logo_url 
+                FROM player 
+                JOIN team ON player.teamname  = team.teamname
+                ORDER BY player.playerid ASC;
+            `),
+            db.query(`
+                SELECT 
+                    player.fname,
+                    player.lname,
+                    player.teamname,
+                    player.position,
+                    stats.playerid,
+                    stats.matches_played,
+                    stats.minutes_played,
+                    stats.goals,
+                    stats.assists,
+                    stats.yellowcards,
+                    stats.redcards
+                FROM stats
+                JOIN player ON stats.playerid = player.playerid
+                ORDER BY stats.goals DESC, stats.assists DESC;
+            `)
+        ]);
+                
+        players = playersResult.rows;
+        stats = statsResult.rows;
 
-        res.render("players.ejs", { activePage: "players", players: players });
+        res.render("players.ejs", { activePage: "players", players: players, stats: stats });
     } catch (err){
         console.log(err);
         res.status(500).send("Server Error, cannot fetch Players");
