@@ -35,30 +35,16 @@ A comprehensive football league platform with ticketing, team information and ot
 - **QR Codes**: qrcode library
 - **Other**: Axios, body-parser, dotenv, uuid
 
-## API Endpoints
-
-- `GET /` - Home page with latest articles and fixtures
-- `GET /article/:id` - View specific article
-- `GET /pay-ticket/:matchid` - Ticket purchase page
-- `POST /purchase-ticket` - Process ticket purchase
-- `POST /mpesa-callback` - M-Pesa payment callback
-- `GET /watch` - Video highlights
-- `GET /teams` - Team listings
-- `GET /players` - Player statistics
-- `GET /fixtures` - Match fixtures and results
-- `GET /careers` - Job postings
-- `GET /job/:id` - Specific job details
-
 ## Screenshots
 ### 1. Home Page
 The home page features the latest football updates. It has three parts:
-#### 1.1 Latest articles section####
+#### 1.1 Latest articles section
 ![Home Page](public/images/demo/home.PNG)
 
 To read an article click "read more" button. Below is a sample article view:
 ![Article View](public/images/demo/article.PNG)
 
-#### 1.2 Gameweek fixtures section####
+#### 1.2 Gameweek fixtures section
 ![Gameweek Fixtures](public/images/demo/gw.PNG)
 
 To purchase a ticket click "Tickets".
