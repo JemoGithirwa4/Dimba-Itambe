@@ -69,7 +69,7 @@ To watch the highlights just click the red play button.
 
 ### 3. Teams Page
 The teams page displays teams registered in the league.
-![Teams Page](public/images/demo/team.PNG)
+![Teams Page](public/images/demo/teams.PNG)
 To view a specific club’s website click “View club ->”.
 To search for a club click on the input box named “Search Clubs” and enter the club name. Display is toggled as the text is entered.
 
