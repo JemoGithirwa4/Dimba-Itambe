@@ -50,7 +50,7 @@ A comprehensive football league platform with ticketing, team information and ot
 - `GET /job/:id` - Specific job details
 
 ## Screenshots
-**Home Page**
+### Home Page
 The home page features the latest football updates. It has three parts:
 - Latest articles section
 - Gameweek fixtures section
