@@ -52,13 +52,13 @@ A comprehensive football league platform with ticketing, team information and ot
 ## Screenshots
 ### Home Page
 The home page features the latest football updates. It has three parts:
-- **Latest articles section**
+#### Latest articles section####
 ![Home Page](public/images/demo/home.PNG)
 
 To read an article click "read more" button. Below is a sample article view:
 ![Article View](public/images/demo/article.PNG)
 
-- **Gameweek fixtures section**
+#### Gameweek fixtures section####
 ![Gameweek Fixtures](public/images/demo/gw.PNG)
 
 To purchase a ticket click "Tickets".
@@ -71,7 +71,7 @@ An STK push will be received on the phone number entered, enter M-pesa pin to co
 Below is how the tcket looks like once payment is completed and sent to the entered email:
 ![Ticket](public/images/demo/tiko.PNG)
 
-- **Featured player section**
+#### Featured player section
 This contains a profile of 3 chosen players with their various statistics. It keeps changing from time to time.
 ![Featured players section](public/images/demo/feat-players.PNG)
 
