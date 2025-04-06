@@ -53,16 +53,6 @@ A comprehensive football league platform with ticketing, team information and ot
 ### Home Page
 The home page features the latest football updates. It has three parts:
 - Latest articles section
-- Gameweek fixtures section
-- Featured player section
-
-![Home Page](public/images/demo/home.PNG)
-![Gameweek fixtures section](public/images/demo/gw.PNG)
-![Featured players section](public/images/demo/feat-players.PNG)
-
-### Home Page
-The home page features the latest football updates. It has three parts:
-- Latest articles section
 ![Home Page](public/images/demo/home.PNG)
 To read an article click "read more" button. Below is a sample article view:
 ![Article View](public/images/demo/article.PNG)
