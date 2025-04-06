@@ -4,23 +4,23 @@ A comprehensive football league platform with ticketing, team information and ot
 
 ## Features
 
-- **Ticket Purchasing System**
+**Ticket Purchasing System**
   - M-Pesa payment integration
   - QR code generation for tickets
   - Email notifications with ticket details
   - Payment callback handling
 
-- **Team & Player Management**
+**Team & Player Management**
   - Player statistics display
   - Team rosters and information
   - League standings
 
-- **Match Information**
+**Match Information**
   - Fixtures schedule
   - Match results tracking
   - Goal scorers 
 
-- **Content Display**
+**Content Display**
   - News articles 
   - Video highlights
   - Job postings/careers section
