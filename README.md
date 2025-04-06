@@ -36,7 +36,7 @@ A comprehensive football league platform with ticketing, team information and ot
 - **Other**: Axios, body-parser, dotenv, uuid
 
 ## Demo
-For a video demonstration click ![here](https://youtu.be/kE7fklxjxaU)
+For a video demonstration click [here](https://youtu.be/kE7fklxjxaU)
 ### 1. Home Page
 The home page features the latest football updates. It has three parts:
 #### 1.1 Latest articles section
