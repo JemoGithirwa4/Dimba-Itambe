@@ -565,7 +565,7 @@ app.get("/fixtures", async (req, res) => {
 app.get("/careers", async (req, res) => {
     try {
         const result = await db.query(
-          "SELECT id, title, location, job_type, openings, description, deadline FROM jobs WHERE deadline >= CURRENT_DATE ORDER BY created_at DESC"
+          "SELECT id, title, location, job_type, openings, description, deadline FROM jobs  ORDER BY created_at DESC"
         );
         res.render("careers.ejs", { activePage: "careers", jobs: result.rows });
       } catch (error) {
