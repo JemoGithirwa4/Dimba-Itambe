@@ -50,15 +50,15 @@ A comprehensive football league platform with ticketing, team information and ot
 - `GET /job/:id` - Specific job details
 
 ## Screenshots
-### Home Page
+### 1. Home Page
 The home page features the latest football updates. It has three parts:
-#### Latest articles section####
+#### 1.1 Latest articles section####
 ![Home Page](public/images/demo/home.PNG)
 
 To read an article click "read more" button. Below is a sample article view:
 ![Article View](public/images/demo/article.PNG)
 
-#### Gameweek fixtures section####
+#### 1.2 Gameweek fixtures section####
 ![Gameweek Fixtures](public/images/demo/gw.PNG)
 
 To purchase a ticket click "Tickets".
@@ -68,10 +68,10 @@ The user enters their phone number that will make the payment and the email addr
 An STK push will be received on the phone number entered, enter M-pesa pin to complete the ticket purchase.
 ![STK success](public/images/demo/stk.PNG)
 
-Below is how the tcket looks like once payment is completed and sent to the entered email:
+Below is how the ticket looks like once payment is completed and sent to the entered email:
 ![Ticket](public/images/demo/tiko.PNG)
 
-#### Featured player section
+#### 1.3 Featured player section
 This contains a profile of 3 chosen players with their various statistics. It keeps changing from time to time.
 ![Featured players section](public/images/demo/feat-players.PNG)
 
