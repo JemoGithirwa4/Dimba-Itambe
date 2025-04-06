@@ -57,3 +57,6 @@ The home page features the latest football updates. It has three parts:
 - Featured player section
 
 ![Home Page](public/images/demo/home.PNG)
+![Gameweek fixtures section](public/images/demo/gw.PNG)
+![Featured players section](public/images/demo/feat-players.PNG)
+
