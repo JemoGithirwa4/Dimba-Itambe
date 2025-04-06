@@ -35,7 +35,8 @@ A comprehensive football league platform with ticketing, team information and ot
 - **QR Codes**: qrcode library
 - **Other**: Axios, body-parser, dotenv, uuid
 
-## Screenshots
+## Demo
+For a video demonstration click ![here](https://youtu.be/kE7fklxjxaU)
 ### 1. Home Page
 The home page features the latest football updates. It has three parts:
 #### 1.1 Latest articles section
